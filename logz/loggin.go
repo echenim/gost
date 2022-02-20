@@ -3,12 +3,28 @@ package logz
 import (
 	"fmt"
 	"log"
+	"os"
 )
 
 type Default struct{
 	minLevel LogLevel
 	loggers map[LogLevel] *log.Logger
 	triggerPanic bool
+}
+
+func New(level LogLevel) Logger{
+	flags := log.Lmsgprefix | log.Ltime
+	return &Default{
+		minLevel: level,
+		loggers: map[LogLevel]*log.Logger{
+			Trace: log.New(os.Stdout, "TRACE ", flags),
+            Debug: log.New(os.Stdout, "DEBUG ", flags),
+            Information: log.New(os.Stdout, "INFO ", flags),
+            Warning: log.New(os.Stdout, "WARN ", flags),
+            Fatal: log.New(os.Stdout, "FATAL ", flags),
+		},
+		triggerPanic: true,
+	}
 }
 
 func (l *Default) MinLogLevel() LogLevel {
