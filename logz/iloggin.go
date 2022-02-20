@@ -11,7 +11,7 @@ const(
 	None
 )
 
-type Logger interface{
+type Logha interface{
 	Trace(string)
 	Tracef(string, ...interface{})
 

@@ -3,6 +3,7 @@ package logz
 import (
 	"fmt"
 	"log"
+
 	"os"
 )
 
@@ -12,8 +13,8 @@ type Default struct{
 	triggerPanic bool
 }
 
-func New(level LogLevel) Logger{
-	flags := log.Lmsgprefix | log.Ltime
+func New(level LogLevel) Logha{
+	flags := log.Lmsgprefix | log.Ltime | log.Ldate |log.Lmicroseconds 
 	return &Default{
 		minLevel: level,
 		loggers: map[LogLevel]*log.Logger{
