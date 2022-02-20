@@ -1,4 +1,4 @@
-package config
+package configs
 
 type Configuration interface{
  GetString(name string) (configValue string, found bool)
